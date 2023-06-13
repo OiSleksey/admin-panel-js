@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <section class="container-fluid loading">
+      <div class="spinner-border text-primary loading__box mb-5" role="status">
+        <span class="visually-hidden loading__span">Loading...</span>
+      </div>
+      <h2 class="loading__message">Waiting for a response from the server</h2>
+    </section>
+
+    <section class="modal-message">
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="examplemodalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered modal-dialog__message">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Message</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body modal-body__message px-5"></div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/modal result send form-->
+    </section>
+    <section class="container-xl admin-login d-none">
+      <div class="form-box">
+        <form id="formAuth">
+          <h2 class="text-center mb-5">Administrator Login</h2>
+          <div class="mb-3">
+            <label for="inputEmailAuth" class="form-label">Email address</label>
+            <input
+              type="email"
+              class="form-control"
+              id="inputEmailAuth"
+              aria-describedby="emailHelp"
+            />
+          </div>
+          <div class="mb-3 mb-5">
+            <label for="inputPasswordAuth" class="form-label">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="inputPasswordAuth"
+            />
+          </div>
+          <div class="text-center">
+            <button type="submit" id="authBtn" class="btn btn-dark px-5">
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+    <section class="container-xl admin-panel d-none">
+      <h1 class="p-4 text-center">Admin Panel</h1>
+      <nav class="controller navbar bg-primary mb-2">
+        <div class="container-fluid justify-content-end">
+          <button class="controller__btn btn btn-dark me-4" id="allUsers">
+            Display all users
+          </button>
+          <button
+            class="controller__btn btn me-4 btn-dark"
+            id="createUser"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseOne"
+            aria-expanded="false"
+            aria-controls="collapseOne"
+          >
+            Create user
+          </button>
+          <button class="controller__btn btn me-5 btn-dark" id="updateData">
+            Update data
+          </button>
+          <form class="d-flex" role="search" id="searchForm">
+            <input
+              class="form-control me-1"
+              style="width: 18rem"
+              type="search"
+              placeholder="Find user by: email, name, id"
+              aria-label="Search"
+              id="findUser"
+            />
+            <button class="btn btn-dark" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+      <div class="accordion create-accordion" id="accordionExample">
+        <div class="accordion-item create-accordion__item">
+          <div
+            id="collapseOne"
+            class="accordion-collapse collapse create-user"
+            data-bs-parent="#accordionExample"
+          >
+            <div class="accordion-body row justify-content-center">
+              <h3 class="text-center">Create User</h3>
+              <form class="w-50" id="formCreateUser">
+                <div class="mb-3">
+                  <label for="inputName" class="form-label">Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputName"
+                    aria-describedby="emailHelp"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="inputEmail" class="form-label"
+                    >Email address</label
+                  >
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="inputEmail"
+                    aria-describedby="emailHelp"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="inputPhone" class="form-label">Phone </label>
+                  <input type="number" class="form-control" id="inputPhone" />
+                </div>
+                <div class="mb-3">
+                  <label for="inputHomePhone" class="form-label"
+                    >Home phone</label
+                  >
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="inputHomePhone"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="inputBirthDay" class="form-label">Birthday</label>
+                  <input type="date" class="form-control" id="inputBirthDay" />
+                </div>
+                <div class="row flex-nowrap justify-content-start mb-3 px-3">
+                  <div class="form-check w-auto">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="chooseRole"
+                      id="checkedManager"
+                      checked
+                    />
+                    <label class="form-check-label" for="checkedManager">
+                      Manager
+                    </label>
+                  </div>
+                  <div class="form-check w-auto">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="chooseRole"
+                      id="checkedAdmin"
+                    />
+                    <label class="form-check-label" for="checkedAdmin">
+                      Admin
+                    </label>
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  class="btn btn-dark px-5"
+                  id="submitNewUser"
+                >
+                  Submit
+                </button>
+              </form>
+            </div>
+          </div>
+          <div
+            id="collapseTwo"
+            class="accordion-collapse collapse update-user"
+            data-bs-parent="#accordionExample"
+          >
+            <div class="accordion-body row justify-content-center">
+              <h3 class="text-center">Update User</h3>
+              <form class="w-50" id="formUpdateUser">
+                <div class="mb-3">
+                  <label for="updateName" class="form-label">Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="updateName"
+                    aria-describedby="emailHelp"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="updateEmail" class="form-label"
+                    >Email address</label
+                  >
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="updateEmail"
+                    aria-describedby="emailHelp"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="updatePhone" class="form-label">Phone </label>
+                  <input type="text" class="form-control" id="updatePhone" />
+                </div>
+                <div class="mb-3">
+                  <label for="updateHomePhone" class="form-label"
+                    >Home phone</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="updateHomePhone"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="updateBirthDay" class="form-label"
+                    >Birthday</label
+                  >
+                  <input type="date" class="form-control" id="updateBirthDay" />
+                </div>
+                <div class="mb-3">
+                  <label for="updateHireDate" class="form-label"
+                    >Hire date</label
+                  >
+                  <input type="date" class="form-control" id="updateHireDate" />
+                </div>
+                <div class="row flex-nowrap justify-content-start mb-3 px-3">
+                  <div class="form-check w-auto">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="chooseRole"
+                      id="checkedUpdateManager"
+                      checked
+                    />
+                    <label class="form-check-label" for="checkedUpdateManager">
+                      Manager
+                    </label>
+                  </div>
+                  <div class="form-check w-auto">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="chooseRole"
+                      id="checkedUpdateAdmin"
+                    />
+                    <label class="form-check-label" for="checkedUpdateAdmin">
+                      Admin
+                    </label>
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  class="btn btn-darkpx-5"
+                  id="submitUpdateUser"
+                >
+                  Submit
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="div">
+        <table class="table table-bordered table-users border-primary">
+          <thead>
+            <tr class="table__header">
+              <th scope="col">#</th>
+              <th scope="col">id</th>
+              <th scope="col">update</th>
+              <th scope="col">name</th>
+              <th scope="col">role</th>
+              <th scope="col">email</th>
+              <th scope="col">phone</th>
+              <th scope="col">homePhone</th>
+              <th scope="col">dateOfBirth</th>
+              <th scope="col">blocked</th>
+              <th scope="col">createdAt</th>
+              <th scope="col">lastLoginAt</th>
+              <th scope="col">hireDate</th>
+              <th scope="col">roleId</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </section>
+
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+
+    <script src="js/index.js" type="module"></script>
+  </body>
+</html>
